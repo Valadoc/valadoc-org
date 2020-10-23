@@ -1,9 +1,9 @@
 VALAC = valac
 PACKAGES ?= --all
 GENERATOR_OPTS ?= --disable-devhelp --skip-existing
-VALAC_VERSION := $(shell vala --api-version | awk -F. '{ print "0."$$2 }')
-VAPIDIR := $(shell pkg-config --variable vapidir libvala-$(VALAC_VERSION))
-VALAFLAGS = -g -X -w
+VALAC_VERSION := $(shell $(VALAC) --api-version | awk -F. '{ print "0."$$2 }')
+VAPIDIRS := --vapidir $(shell pkg-config --variable vapidir libvala-$(VALAC_VERSION)) --vapidir $(shell pkg-config --variable vapidir valadoc-$(VALAC_VERSION))
+VALAFLAGS = -g -X -w $(VAPIDIRS)
 PREFIX = "stable"
 
 default: generator libdoclet.so update-girs configgen valadoc-example-gen valadoc-example-tester
@@ -104,7 +104,6 @@ build-data:
 build-docs: default
 	$(RM) -r tmp/
 	./generator \
-		--vapidir $(VAPIDIR) \
 		--vapidir "extra-vapis/" --vapidir "girs/vala/vapi/" \
 		--prefix $(PREFIX) \
 		--target-glib 2.98 \

@@ -60,7 +60,8 @@ public class ExampleTester : ExampleParser {
 	protected override void compile (string str) throws MarkupError {
 		string cmnd = str.strip ();
 
-		bool is_valac_call = str.has_prefix ("valac ");
+		const string VALAC_PREFIX = "valac ";
+		bool is_valac_call = str.has_prefix (VALAC_PREFIX);
 		bool is_schema_call = str.has_prefix ("glib-compile-schemas");
 
 		// We only check for sanity, not for safety
@@ -70,6 +71,8 @@ public class ExampleTester : ExampleParser {
 		}
 
 		if (is_valac_call) {
+			cmnd = Environment.get_variable ("VALAC") + " " +
+				cmnd.substring (VALAC_PREFIX.length);
 			cmnd += " --fatal-warnings";
 			if (example_deprecated == true) {
 				cmnd += " --enable-deprecated";
