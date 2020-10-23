@@ -1,4 +1,4 @@
-VALAC = valac
+VALAC ?= valac
 PACKAGES ?= --all
 GENERATOR_OPTS ?= --disable-devhelp --skip-existing
 VALAC_VERSION := $(shell $(VALAC) --api-version | awk -F. '{ print "0."$$2 }')
