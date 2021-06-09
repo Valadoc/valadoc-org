@@ -58,7 +58,7 @@ public class Valadoc.IndexGenerator : Valadoc.ValadocOrgDoclet {
 
 		// Unversioned vapi directory:
 		try {
-			Process.spawn_command_line_sync ("pkg-config --variable=vapidir vapigen", out standard_output, out standard_error, out exit_status);
+			Process.spawn_command_line_sync ("pkg-config --variable=vapidir vapigen-%s".printf (Vala.API_VERSION), out standard_output, out standard_error, out exit_status);
 			if (exit_status == 0) {
 				paths += standard_output.strip ();
 			}
@@ -828,8 +828,8 @@ public class Valadoc.IndexGenerator : Valadoc.ValadocOrgDoclet {
 
 
 		StringBuilder builder = new StringBuilder ();
-		builder.append_printf ("valadoc --target-glib %s --importdir girs --doclet \"%s\" -o \"tmp/%s\" \"%s\" --vapidir \"%s\" --girdir \"%s\" %s --use-svg-images",
-			target_glib, docletpath, pkg.name, pkg.get_vapi_path (vapidirs), Path.get_dirname (pkg.get_vapi_path (vapidirs)), girdir, pkg.flags);
+		builder.append_printf ("valadoc-%s --target-glib %s --importdir girs --doclet \"%s\" -o \"tmp/%s\" \"%s\" --vapidir \"%s\" --girdir \"%s\" %s --use-svg-images",
+			Vala.API_VERSION, target_glib, docletpath, pkg.name, pkg.get_vapi_path (vapidirs), Path.get_dirname (pkg.get_vapi_path (vapidirs)), girdir, pkg.flags);
 
 		if (disable_devhelp == true) {
 			builder.append (" -X --disable-devhelp");

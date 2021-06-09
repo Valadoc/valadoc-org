@@ -52,6 +52,12 @@ you completed building, you should see a `valadoc.org` folder.
 To access the documentation navigate your browser to http://localhost:7777.
 
 
+Using a different version of Vala
+=================================
+
+You may want or need to test Valadoc with a different version of Vala, for example to pick up fixes in Vala that are necessary to build example code. You can do this with a chroot or jhbuild; or if your valac’s API version is different from other versions you have installed, just set `VALAC=valac-X.YY` in your environment when running `make`.
+
+
 Searching
 =========
 
