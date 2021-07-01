@@ -27,8 +27,8 @@ p {
 }
 
 /***********
- * Nav Bar *
- ***********/
+* Nav Bar *
+***********/
 
 nav {
     align-items: center;
@@ -115,8 +115,8 @@ nav .title img {
 }
 
 /***********
- * Sidebar *
- ***********/
+* Sidebar *
+***********/
 
 #sidebar {
     background-color: #f7f6f8;
@@ -263,8 +263,8 @@ nav .title img {
 }
 
 /***********
- * Content *
- ***********/
+* Content *
+***********/
 
 #content-wrapper {
     display: flex;
@@ -634,8 +634,8 @@ code {
 }
 
 /*********
- * Icons *
- *********/
+* Icons *
+*********/
 
 .abstract_class::before,
 a.abstract_class,
@@ -791,4 +791,67 @@ a.abstract_class,
 .description a.virtual_property,
 .brief_description a.virtual_property {
     background-image: url(/images/virtualproperty.svg);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #22222a;
+        color: #eee;
+    }
+
+    nav {
+        background-color: #38304c;
+    }
+
+    #sidebar {
+        background-color: #22222a;
+        border-right-color: #111;
+    }
+
+    #sidebar li:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .search-selected {
+        background-color: #524a66 !important;
+    }
+
+    li.namespace::before,
+    li.package_index::before {
+        filter: brightness(200%);
+    }
+
+    #sidebar a {
+        color: #eee;
+    }
+
+    .highlight:hover {
+        background-color: #111;
+    }
+
+    #sidebar hr {
+        border-top-color: #222;
+        border-bottom-color: #000;
+    }
+
+    .main_code_definition {
+        background-color: #111;
+    }
+
+    .box .headline {
+        background-color: #112;
+        border-color: #446;
+    }
+
+    footer {
+        background-color: #1a1a1a;
+        color: #eee;
+    }
+
+    .tooltip {
+        background-color: #111;
+    }
+
+    .main_parameter_table_unknown_parameter {
+        color: #999;
+    }
 }
